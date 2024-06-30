@@ -5,17 +5,15 @@ import { AddFilter } from "./Addfilter";
 import TodoCard from "./TodoCard";
 
 const ToDoContainer = () => {
-
-
-//from local state
+  //from local state
   // const {todos}=useAppSelector((state)=>state.todos)
 
-//from server
-const {data:todos,isLoading}=useGetTodosQuery(undefined);
-console.log(todos);
-if (isLoading) {
-  return <p>Loading....</p>
-}
+  //from server
+  const { data: todos, isLoading } = useGetTodosQuery(undefined);
+  console.log(todos);
+  if (isLoading) {
+    return <p>Loading....</p>;
+  }
   return (
     <div>
       <div>
@@ -29,9 +27,9 @@ if (isLoading) {
             {/* <div className="bg-white p-2 rounded-md text-center text-xl font-bold">
             <p>There is No Task Pending...!</p>
           </div> */}
-          {
-            todos?.data?.map(item=><TodoCard {...item} key={item.id}></TodoCard>)
-          }
+            {todos?.data?.map((item) => (
+              <TodoCard {...item} key={item.id}></TodoCard>
+            ))}
             {/* <TodoCard></TodoCard>
             <TodoCard></TodoCard> */}
           </div>

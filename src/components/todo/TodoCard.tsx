@@ -6,34 +6,48 @@ const TodoCard = ({
   title,
   description,
   isCompleted,
-  priority
+  priority,
 }: {
   id: string;
   title: string;
   description: string;
   isCompleted?: boolean;
-  priority:string
-
+  priority: string;
 }) => {
   const dispatch = useAppDispatch();
 
   const toggleState = () => {
-   dispatch(toggleComplete(id))
+    dispatch(toggleComplete(id));
   };
   return (
     <div className="  flex justify-between items-center rounded-md py-2 px-5 border-b">
-      <input type="checkbox" onClick={toggleState} name="complect" id="complect" />
-      <p className="font-medium">{title}</p>
+      <input
+        type="checkbox"
+        onClick={toggleState}
+        name="complect"
+        id="complect"
+        className="mr-3"
+      />
+      <p className="font-medium flex-1">{title}</p>
       {/* <p className="font-medium">Time</p> */}
-      <p className="font-medium">{description}</p>
-      <div>
+      <p className="font-medium flex-[2]">{description}</p>
+      <div className="flex-1">
         {isCompleted ? (
           <p className="text-green-500 font-semibold">done</p>
         ) : (
           <p className="text-red-600 font-semibold">Pending</p>
         )}
       </div>
-      <p className="font-medium">{priority}</p>
+      <div className="font-medium flex-1 flex items-center gap-2">
+        <div
+          className={`size-2 rounded-full 
+            ${priority == "High" ? "bg-red-500" : null} 
+            ${priority == "Medium" ? "bg-yellow-500" : null}
+            ${priority == "Low" ? "bg-green-500" : null}
+            `}
+        ></div>
+        <p>{priority}</p>
+      </div>
 
       <div className=" space-x-3">
         <button
