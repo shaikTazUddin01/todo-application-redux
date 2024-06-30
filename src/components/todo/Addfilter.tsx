@@ -1,7 +1,14 @@
 import { useState } from "react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-
 
 export function AddFilter() {
   const [position, setPosition] = useState("bottom");
@@ -15,9 +22,9 @@ export function AddFilter() {
         <DropdownMenuLabel>Filter by Priority</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
-          <DropdownMenuRadioItem value="High">Top</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="Medium">Bottom</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="Low">Right</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="High">High</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Medium">Medium</DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="Low">Low</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>

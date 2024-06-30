@@ -6,11 +6,14 @@ const TodoCard = ({
   title,
   description,
   isCompleted,
+  priority
 }: {
   id: string;
   title: string;
   description: string;
   isCompleted?: boolean;
+  priority:string
+
 }) => {
   const dispatch = useAppDispatch();
 
@@ -30,6 +33,8 @@ const TodoCard = ({
           <p className="text-red-600 font-semibold">Pending</p>
         )}
       </div>
+      <p className="font-medium">{priority}</p>
+
       <div className=" space-x-3">
         <button
           className="bg-red-500 p-2 rounded-lg"

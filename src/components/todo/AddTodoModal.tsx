@@ -17,6 +17,7 @@ import { addTodo } from "../../redux/features/todoSlice";
 export function AddTodo() {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState("");
   const dispatch = useAppDispatch();
 
   const handleSubmit = (e: FormEvent) => {
@@ -27,6 +28,7 @@ export function AddTodo() {
       id: randomString,
       title: task,
       description,
+      priority
     };
     console.log(todo);
     dispatch(addTodo(todo));
@@ -65,6 +67,17 @@ export function AddTodo() {
                 name="desription"
                 className="col-span-3"
                 onBlur={(e) => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="priority" className="text-right">
+                Priority
+              </Label>
+              <Input
+                id="priority"
+                name="priority"
+                className="col-span-3"
+                onBlur={(e) => setPriority(e.target.value)}
               />
             </div>
           </div>
