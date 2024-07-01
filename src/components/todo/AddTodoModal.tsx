@@ -29,10 +29,9 @@ export function AddTodo() {
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
   // const dispatch = useAppDispatch();
-  console.log(priority);
   //RTK query to using post data
   const [addTodo, { isLoading, isSuccess, data }] = usePostTodoMutation();
-  console.log(isLoading, isSuccess, data);
+  // console.log(isLoading, isSuccess, data);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // console.log(task, description);
@@ -84,17 +83,6 @@ export function AddTodo() {
                 onBlur={(e) => setDescription(e.target.value)}
               />
             </div>
-            {/* <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="priority" className="text-right">
-                Priority
-              </Label>
-              <Input
-                id="priority"
-                name="priority"
-                className="col-span-3"
-                onBlur={(e) => setPriority(e.target.value)}
-              />
-            </div> */}
             <div className="grid grid-cols-4 items-center gap-2">
               <Label htmlFor="priority" className="text-right">
                 Priority
