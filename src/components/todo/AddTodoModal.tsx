@@ -11,27 +11,42 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { useAppDispatch } from "../../redux/hooks";
-import { addTodo } from "../../redux/features/todoSlice";
+// import { useAppDispatch } from "../../redux/hooks";
+// import { addTodo } from "../../redux/features/todoSlice";
+import { usePostTodoMutation } from "../../redux/api/api";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  // SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 export function AddTodo() {
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("");
-  const dispatch = useAppDispatch();
-
+  // const dispatch = useAppDispatch();
+  console.log(priority);
+  //RTK query to using post data
+  const [addTodo, { isLoading, isSuccess, data }] = usePostTodoMutation();
+  console.log(isLoading, isSuccess, data);
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // console.log(task, description);
-    const randomString = Math.random().toString(36).substring(2, 7);
+    // const randomString = Math.random().toString(36).substring(2, 7);
     const todo = {
-      id: randomString,
+      // id: randomString,
       title: task,
       description,
-      priority
+      priority,
+      isCompleted:false
     };
     console.log(todo);
-    dispatch(addTodo(todo));
+    addTodo(todo);
+    // dispatch(addTodo(todo));
   };
   return (
     <Dialog>
@@ -69,7 +84,7 @@ export function AddTodo() {
                 onBlur={(e) => setDescription(e.target.value)}
               />
             </div>
-            <div className="grid grid-cols-4 items-center gap-4">
+            {/* <div className="grid grid-cols-4 items-center gap-4">
               <Label htmlFor="priority" className="text-right">
                 Priority
               </Label>
@@ -79,6 +94,23 @@ export function AddTodo() {
                 className="col-span-3"
                 onBlur={(e) => setPriority(e.target.value)}
               />
+            </div> */}
+            <div className="grid grid-cols-4 items-center gap-2">
+              <Label htmlFor="priority" className="text-right">
+                Priority
+              </Label>
+              <Select onValueChange={(value) => setPriority(value)}>
+                <SelectTrigger className="col-span-3">
+                  <SelectValue placeholder="Select a Priority" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup >
+                    <SelectItem value="High">High</SelectItem>
+                    <SelectItem value="Medium">Medium</SelectItem>
+                    <SelectItem value="Low">Low</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
             </div>
           </div>
           <div className="flex justify-end">
